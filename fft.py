@@ -50,17 +50,20 @@ sRate = float( scope.query(':ACQuire:SRATe?') )     # Sample rate
 # Get the samples 
 chan1 = scope.get_waveform_samples('CHAN1', 'RAW')  # Samples
 
-
-
 n   = len(chan1)  # Number of samples = FFT size
 w   = hann(n)     # Hanning window function
 scs = sRate/n     # Sub-carrier spacing
 
-print('n   = ' + str(n) )
-print('scs = ' + str(scs) )
+#chan1 = np.linspace(1, 1, n)
+#chan1 = np.random.normal(0.0001, 0.00005, size=n)
+
+print('sRate = ' + str(sRate))
+print('n     = ' + str(n) )
+print('scs   = ' + str(scs) )
 
 # Generate the values for the x-axis
 x = np.linspace (0, n//2*scs, n//2)
+
 
 # Calculate the FFT without the hanning window
 #chan1F = fft(chan1)
@@ -72,8 +75,9 @@ chan1WF = fft(chan1*w)
 
 
 # Plot using logarithmic scale
+#plt.plot(chan1)
 plt.semilogy( x, 2.0/n * np.abs(chan1WF[0:n//2]), '-b' )
-#plt.semilogy( x, 2.0/n * np.abs(chan1WF[0:n//2]), '-r' )
+#plt.semilogy( x, 2.0/n * np.abs(chan1F[0:n//2]), '-r' )
 plt.grid()
 plt.show()
 
