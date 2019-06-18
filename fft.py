@@ -36,7 +36,7 @@ from scipy.signal import hann
 
 
 # Scope IP address
-IP_ADDRESS = '192.168.2.4'
+IP_ADDRESS = '192.168.2.5'
 
 
 # Connect to scope
